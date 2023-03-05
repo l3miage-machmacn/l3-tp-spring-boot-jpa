@@ -86,9 +86,6 @@ public class BooksController {
     }
 
     // creat a new book
-    // !!!!!!!!!! if the same book exist it creats a new object with another id !!!!
-    // !!!!!! business logic not respected in this method bookService.save(authorId,
-    // newBook) !!!!
     @PostMapping("/authors/{authorId}/books")
     public BookDTO newBook(@PathVariable Long authorId, @RequestBody BookDTO book, HttpServletResponse response) {
 
@@ -139,9 +136,7 @@ public class BooksController {
 
     }
 
-    // !!!!! updating all the book properties except id and authors, not specified
-    // in specification documents, deducted from tests
-    // error in the git file, this method take bookId not authorId
+  
     @PutMapping("books/{bookId}")
     public BookDTO updateBook(@PathVariable Long bookId, @RequestBody BookDTO book) {
         // attention BookDTO.id() doit être égale à id, sinon la requête utilisateur est
@@ -165,7 +160,6 @@ public class BooksController {
     }
 
     // delete the book having bookId
-    // !!!!!! why in test is written (Delete second book)
     @DeleteMapping("/books/{bookId}")
     public void deleteBook(@PathVariable Long bookId, HttpServletResponse response) {
         // void delete(Long id) throws EntityNotFoundException;
@@ -179,9 +173,6 @@ public class BooksController {
     }
 
     // add an author given in the query's body to the book indecated in the path
-    // !!!!! parametre faux devrait etre bookId et non un author id
-    // !!!!!!! spec not defined in openAPI deducted from test file
-    // !!!!!! BAD_REQUEST instead of NOT_FOUND
     @PutMapping("/books/{bookId}/authors")
     public BookDTO addAuthor(@PathVariable Long bookId, @RequestBody AuthorDTO author, HttpServletResponse response) {
 
